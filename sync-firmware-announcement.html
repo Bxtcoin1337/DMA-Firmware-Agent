@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sync Firmware Agent</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        h2 {
+            font-size: 1.3em;
+            margin: 40px 0 20px 0;
+            font-weight: 600;
+            color: #1a1a1a;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.1em;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.7;
+        }
+
+        strong {
+            font-weight: 600;
+            color: #000;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-left: 4px solid #ddd;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .divider {
+            border: none;
+            height: 1px;
+            background: #e0e0e0;
+            margin: 40px 0;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .highlight {
+            background: #fffbf0;
+            padding: 20px;
+            border-left: 4px solid #ff9500;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .highlight strong {
+            color: #000;
+        }
+
+        .conclusion {
+            background: #f0f7ff;
+            padding: 25px;
+            border-left: 4px solid #0066cc;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .cta {
+            background: #000;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 4px;
+            text-align: center;
+            display: inline-block;
+            margin: 30px 0;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .cta:hover {
+            background: #333;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.1em;
+            }
+
+            body {
+                padding: 20px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SYNC FIRMWARE AGENT</h1>
+        <p class="subtitle">Understanding Real Custom Firmware vs. Mass-Market Claims</p>
+
+        <hr class="divider">
+
+        <h2>THE PROBLEM: "1:1" DOESN'T MEAN WHAT PROVIDERS CLAIM</h2>
+        <p>Firmware vendors advertise:</p>
+        <ul>
+            <li>"1:1 custom firmware"</li>
+            <li>"Individualized builds"</li>
+            <li>"Unique per device"</li>
+        </ul>
+        <p><strong>The question they avoid:</strong> If the same public firmware foundation is built repeatedly and resold to multiple customers, how is that "1:1"?</p>
+
+        <hr class="divider">
+
+        <h2>WHY CHEAP CUSTOM FIRMWARE EXISTS</h2>
+
+        <h3>The Public Foundation</h3>
+        <p>The firmware ecosystem is transparent. Core projects like PCILeech-FPGA are open-source on GitHub with documented workflows:</p>
+        <pre><code>Donor device → PCIe analysis → Customize PCILeech-FPGA 
+→ Configure Vivado → Build → Flash → Test</code></pre>
+        <p>Multiple repositories provide board-specific implementations and complete documentation. Entry cost is minimal.</p>
+
+        <h3>The Shortcut Most Providers Take</h3>
+        <p>Most vendors skip proper customization:</p>
+        <ol>
+            <li>Download public GitHub project (PCILeech-FPGA, NVMe, WiFi, audio implementations)</li>
+            <li>Make minimal modifications</li>
+            <li>Resell the same build under different branding to different customers</li>
+        </ol>
+        <div class="highlight">
+            <strong>This isn't customization. It's white-label distribution of public code.</strong>
+        </div>
+
+        <hr class="divider">
+
+        <h2>THE EVIDENCE: BLOCKED BEFORE FIRST USE</h2>
+
+        <h3>What Customers Report</h3>
+        <p>You receive "1:1 custom firmware." Upon loading—before you've even accessed the target system or played the game—the firmware is already blocked by anti-cheat systems.</p>
+        <p>This occurs despite:</p>
+        <ul>
+            <li>Never using that DMA device with that anti-cheat</li>
+            <li>Never accessing that particular system</li>
+            <li>This supposedly being your "unique, custom-built" firmware</li>
+        </ul>
+
+        <h3>Why</h3>
+        <p>Anti-cheat systems maintain signatures of known public firmware projects. When providers skip the real donor device step and simply rebuild a public GitHub project, the firmware signature matches thousands of previous instances.</p>
+        <p>Anti-cheat recognizes these signatures immediately—not because of your hardware, but because the firmware is a known-public build distributed repeatedly under different provider branding.</p>
+        <p><strong>Truly custom firmware built from your actual donor device wouldn't arrive pre-flagged on systems you've never accessed.</strong></p>
+
+        <hr class="divider">
+
+        <h2>THE WORKFLOW PROBLEM</h2>
+
+        <h3>Current: Disconnected Tools</h3>
+        <p>Traditional FPGA customization requires managing:</p>
+        <ul>
+            <li>Donor device detection</li>
+            <li>PCIe inspection software</li>
+            <li>Arbor / TeleScan configuration</li>
+            <li>PCILeech-FPGA source repository</li>
+            <li>Code editor for modifications</li>
+            <li>Xilinx Vivado synthesis</li>
+            <li>TCL scripts for projects</li>
+            <li>Bitstream generation</li>
+            <li>Device flashing utilities</li>
+            <li>Testing and validation</li>
+        </ul>
+        <p>Each tool operates independently. Coordinating these manually is time-consuming and error-prone.</p>
+
+        <hr class="divider">
+
+        <h2>SYNC: THE INTEGRATED SOLUTION</h2>
+
+        <h3>How It Works</h3>
+        <p>Sync consolidates the entire workflow into one application:</p>
+        <ul>
+            <li><strong>1. SELECT</strong> — Identify your donor device and compatible FPGA hardware</li>
+            <li><strong>2. ANALYZE</strong> — Sync collects your device's PCIe information and hardware signatures</li>
+            <li><strong>3. CONFIGURE</strong> — Specify target settings and required customizations</li>
+            <li><strong>4. GENERATE</strong> — Automatic project generation and technical coordination</li>
+            <li><strong>5. BUILD</strong> — Produce firmware with your device's unique signatures integrated</li>
+        </ul>
+
+        <h3>The Difference</h3>
+        <p>Firmware built with Sync:</p>
+        <ul>
+            <li>✓ Uses your actual physical donor device</li>
+            <li>✓ Incorporates your specific hardware fingerprints</li>
+            <li>✓ Generates unique signatures anti-cheats haven't encountered</li>
+            <li>✓ Cannot be mass-produced or resold (locked to your hardware)</li>
+        </ul>
+        <p><strong>Categorically different from downloading a public GitHub project and reselling it.</strong></p>
+
+        <hr class="divider">
+
+        <h2>THE ECONOMICS</h2>
+
+        <h3>Current Model Problems</h3>
+        <ul>
+            <li>You pay vendors repeatedly for "custom" firmware</li>
+            <li>Vendors resell public projects with minimal changes</li>
+            <li>You receive mass-market builds disguised as custom</li>
+            <li>You depend on vendor warranties and support</li>
+            <li>Resellers profit from distributing public code under different names</li>
+        </ul>
+
+        <h3>Sync Model</h3>
+        <ul>
+            <li><strong>Build your own firmware</strong> — Control the entire pipeline</li>
+            <li><strong>Eliminate vendor dependency</strong> — No repeated vendor payments</li>
+            <li><strong>Own the IP</strong> — Genuinely unique to your hardware</li>
+            <li><strong>Resell with confidence</strong> — Customers get actual custom firmware, not rebranded public code</li>
+            <li><strong>Scale independently</strong> — Generate builds on demand</li>
+        </ul>
+
+        <hr class="divider">
+
+        <h2>VERIFICATION PRINCIPLE</h2>
+        <p>Don't accept claims on faith.</p>
+        <ol>
+            <li><strong>Examine the workflow</strong> — Is real donor hardware used, or is a public GitHub project simply rebuilt?</li>
+            <li><strong>Test the results</strong> — Does firmware arrive pre-flagged on systems you've never accessed? (Indicates known-public build.)</li>
+            <li><strong>Verify customization</strong> — Can firmware signatures be tied to YOUR specific hardware, or are they generic?</li>
+            <li><strong>Understand the economics</strong> — If a vendor builds firmware for pennies and resells repeatedly, is it truly custom?</li>
+        </ol>
+
+        <hr class="divider">
+
+        <h2>SYNC FIRMWARE AGENT</h2>
+
+        <h3>What We Built</h3>
+        <p>A platform for developers and resellers requiring genuine custom firmware, not mass-market solutions disguised as specialized products.</p>
+        <ul>
+            <li><strong>Real donor device integration</strong> — Your hardware drives the build</li>
+            <li><strong>Automated customization</strong> — Reduces manual steps from dozens to five</li>
+            <li><strong>Hardware-locked builds</strong> — Unique to your device, impossible to mass-produce</li>
+            <li><strong>Complete pipeline control</strong> — No external vendors, no third-party dependency</li>
+        </ul>
+
+        <h3>The Outcome</h3>
+        <ul>
+            <li>✓ Firmware arrives unblocked (because it's genuinely unique)</li>
+            <li>✓ Full control over development and distribution</li>
+            <li>✓ Offer actual custom firmware to end customers</li>
+            <li>✓ Economic independence from middlemen vendors</li>
+        </ul>
+
+        <hr class="divider">
+
+        <h2>CONCLUSION</h2>
+        <div class="conclusion">
+            <p>The firmware market operates on one core deception: public code rebranded as custom solutions. Customers pay premium prices for mass-market builds. Resellers distribute public projects and pocket the margin.</p>
+            <p><strong>Sync changes this.</strong></p>
+            <p>Instead of purchasing "1:1" firmware from vendors: Build your own. Control your workflow. Own your builds.</p>
+        </div>
+
+        <p style="text-align: center; margin-top: 40px; font-size: 1.2em;">
+            <strong>Sync Firmware Agent</strong><br>
+            Real custom firmware. Real control. Real value.
+        </p>
+
+        <div class="footer">
+            <p>Questions? Contact us.</p>
+        </div>
+    </div>
+</body>
+</html>
